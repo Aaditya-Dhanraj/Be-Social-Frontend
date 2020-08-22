@@ -1,0 +1,17 @@
+.home-card {
+  max-width: 550px;
+  height: max-content;
+  margin: 26px auto;
+}
+/* .home {
+  display: flex;
+  justify-content: center;
+  margin: 10px 10px;
+} */
+.heart {
+  color: red;
+}
+.card-content input[type="text"]:focus {
+  border-bottom: 1px solid rgb(61, 110, 223) !important;
+  box-shadow: 0 1px 0 0 rgb(61, 110, 223) !important;
+}
