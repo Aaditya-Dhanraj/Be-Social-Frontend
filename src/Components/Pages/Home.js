@@ -13,7 +13,8 @@ const Home = () => {
           />
         </div>
         <div className="card-content">
-        <i className="material-icons heart">favorite_border</i>
+        <i className="material-icons heart">favorite</i>
+        {/* <i className="material-icons" style={{marginLeft:"8px"}} >chat_bubble_outline</i> */}
           <h6 >title</h6>
           <p>this is amazing post</p>
           <input type="text" placeholder="add a comment" />
