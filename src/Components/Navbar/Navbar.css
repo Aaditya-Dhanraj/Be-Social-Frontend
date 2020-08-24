@@ -4,22 +4,52 @@
 .brand-logo {
   font-family: "Grand Hotel", cursive;
 }
-
-.logo{
+nav {
+  background-color: white !important;
+}
+.logo {
   margin-left: -40%;
   color: black !important;
 }
 
+@media only screen and (max-width: 450px) {
+  .logo {
+    margin-left: -35% !important;
+  }
+}
 @media only screen and (max-width: 550px) {
-.logo{
-  margin-left: -40%;
-}
-ul{
-  display: none;
-}
+  .logo {
+    margin-right: 85% !important;
+    margin-top: 0 !important;
+    z-index: 100;
+    width: max-content !important;
+    color: black !important;
+  }
+  .ullu {
+    display: none;
+  }
 }
 @media only screen and (min-width: 992px) {
-  .logo{
+  .logo {
     margin-left: auto;
   }
+}
+@media only screen and (min-width: 551px) {
+  .mobile {
+    display: none;
+    color: black !important;
+  }
+  .sidenav {
+    display: none;
+  }
+}
+nav a {
+  color: black !important;
+}
+.sidenav-trigger {
+  margin-left: 91% !important;
+}
+
+.sidenav {
+  max-width: 200px !important;
 }

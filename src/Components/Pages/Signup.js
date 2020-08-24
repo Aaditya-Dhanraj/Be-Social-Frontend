@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import M from "materialize-css";
 import "./Login.css";
 
 const Signup = () => {
+  const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  const sendData = () => {
+  const sendDataSignup = () => {
     fetch("/api/v1/users/signup", {
       method: "post",
       headers: {
@@ -25,7 +26,41 @@ const Signup = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          M.toast({ html: "Signed-Up successfully}" });
+          M.toast({
+            html: "Signed-Up successfully}",
+            classes: "#43a047 green darken-1",
+          });
+          history.push("/");
+        } else if (data.status === "error") {
+          if (data.error.errors.name) {
+            M.toast({
+              html: data.error.errors.name.message,
+              classes: "#c62828 red darken-1",
+            });
+          }
+          if (data.error.errors.email) {
+            M.toast({
+              html: data.error.errors.email.message,
+              classes: "#c62828 red darken-1",
+            });
+          }
+          if (data.error.errors.password) {
+            M.toast({
+              html: data.error.errors.password.message,
+              classes: "#c62828 red darken-1",
+            });
+          }
+          if (data.error.errors.passwordConfirm) {
+            M.toast({
+              html: data.error.errors.passwordConfirm.message,
+              classes: "#c62828 red darken-1",
+            });
+          }
+        } else {
+          M.toast({
+            html: "Please check your network connection",
+            classes: "#c62828 red darken-1",
+          });
         }
       });
   };
@@ -62,7 +97,7 @@ const Signup = () => {
           className="btn #5c6bc0 indigo lighten"
           type="submit"
           name="action"
-          onClick={() => sendData()}
+          onClick={() => sendDataSignup()}
         >
           Sign up
         </button>
