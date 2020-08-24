@@ -26,7 +26,7 @@ const Login = () => {
             html: "Logged-In successfully}",
             classes: "#43a047 green darken-1",
           });
-          history.pushState("/");
+          history.push("/");
         } else if (data.status === "Fail") {
           if (data.error) {
             M.toast({
