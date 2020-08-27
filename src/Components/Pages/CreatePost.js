@@ -34,7 +34,7 @@ const CreatePost = () => {
           } else if (data.status === "Fail" || "error") {
             if (data) {
               M.toast({
-                html: data.message,
+                html: "Something went wrong",
                 classes: "#c62828 red darken-1",
               });
             }
@@ -61,10 +61,11 @@ const CreatePost = () => {
       .then((data) => {
         setUrl(data.secure_url);
         if (!url) {
-          M.toast({
-            html: data.error.message,
-            classes: "#c62828 red darken-1",
-          });
+          // M.toast({
+          //   html: ,
+          //   classes: "#c62828 red darken-1",
+          // });
+          history.push("/")
         }
       });
   };

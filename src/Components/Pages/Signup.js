@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import M from "materialize-css";
 import "./Login.css";
+import { UserContext } from "../../App";
 
 const Signup = () => {
   const history = useHistory();
@@ -9,6 +10,8 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  const { state, dispatch } = useContext(UserContext);
 
   const sendDataSignup = () => {
     fetch("/api/v1/users/signup", {
@@ -30,6 +33,9 @@ const Signup = () => {
             html: "Signed-Up successfully}",
             classes: "#43a047 green darken-1",
           });
+          localStorage.setItem("jwt", data.token);
+          localStorage.setItem("user", JSON.stringify(data.data.user));
+          dispatch({ type: "USER", payload: data.data.user });
           history.push("/");
         } else if (data.status === "error") {
           if (data.error.errors.name) {
@@ -82,13 +88,13 @@ const Signup = () => {
           onChange={(e) => setName(e.target.value)}
         />
         <input
-          type="text"
+          type="password"
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
-          type="text"
+          type="password"
           placeholder="password Confirm"
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value)}

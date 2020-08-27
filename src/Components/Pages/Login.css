@@ -21,6 +21,10 @@ button:hover{
   border-bottom: 1px solid rgb(61, 110, 223) !important;
   box-shadow: 0 1px 0 0 rgb(61, 110, 223) !important;
 }
+.input-field input[type="password"]:focus {
+  border-bottom: 1px solid rgb(61, 110, 223) !important;
+  box-shadow: 0 1px 0 0 rgb(61, 110, 223) !important;
+}
 .lo {
   font-family: "Grand Hotel", cursive;
 }
