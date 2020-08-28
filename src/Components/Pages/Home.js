@@ -92,8 +92,9 @@ const Home = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         const newData = data.map((item) => {
+          // console.log("comments", item.comments);
           if (item._id === result._id) {
             return result;
           } else {
@@ -111,7 +112,9 @@ const Home = () => {
     <div className="home">
       {data.map((item) => {
         {
-          /* console.log(item.postedBy); */
+          {
+            /* console.log("maini", item); */
+          }
         }
         return (
           <div className="card home-card" key={item._id}>
@@ -140,17 +143,19 @@ const Home = () => {
               {/* <i className="material-icons" style={{marginLeft:"8px"}} >chat_bubble_outline</i> */}
               <h6>{item.title}</h6>
               <p>{item.body}</p>
-              {/* {item.comments.map((record, key) => {
-                console.log(typeof record);
-                return (
-                  <h6 key={record._id}>
-                    <span style={{ fontWeight: "500" }}>
-                      {record.postedBy.name}
-                    </span>
-                    {record.text}
-                  </h6>
-                );
-              })} */}
+              {
+                //data.item &&
+                item.comments.map((record, key) => {
+                  console.log("num", record);
+                  return (
+                    <h6 key={key}>
+                      <span style={{ fontWeight: "500" }}>Aaditya</span>
+                      yash chutiya hai
+                    </h6>
+                  );
+                })
+              }
+
               <form
                 onSubmit={(e) => {
                   e.preventDefault();

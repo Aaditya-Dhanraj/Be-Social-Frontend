@@ -9,7 +9,8 @@ const Profile = () => {
     fetch("/api/v1/posts/myPosts")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data.myPosts);
+        // console.log(data);
+        // console.log(data.data.myPosts);
         setMyPics(data.data.myPosts);
       });
   }, []);
