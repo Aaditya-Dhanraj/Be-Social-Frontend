@@ -27,6 +27,7 @@ const Home = () => {
       method: "put",
       headers: {
         "content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
       body: JSON.stringify({
         postId: id,
@@ -56,6 +57,7 @@ const Home = () => {
       method: "put",
       headers: {
         "content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
       body: JSON.stringify({
         postId: id,
@@ -84,6 +86,7 @@ const Home = () => {
       method: "put",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
       },
       body: JSON.stringify({
         postId,
@@ -94,7 +97,6 @@ const Home = () => {
       .then((result) => {
         // console.log(result);
         const newData = data.map((item) => {
-          // console.log("comments", item.comments);
           if (item._id === result._id) {
             return result;
           } else {
@@ -108,17 +110,41 @@ const Home = () => {
       });
   };
 
+  const deletePost = (postid) => {
+    fetch(`/api/v1/posts/delete/${postid}`, {
+      method: "delete",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        // console.log(result);
+        const newData = data.filter((item) => {
+          return item._id !== result._id;
+        });
+        setData(newData);
+      });
+  };
+
   return (
     <div className="home">
-      {data.map((item) => {
-        {
-          {
-            /* console.log("maini", item); */
-          }
-        }
+      {data.map((item,key) => {
+        {/* console.log(item); */}
         return (
-          <div className="card home-card" key={item._id}>
-            <h5>{item.postedBy.name}</h5>
+          <div className="card home-card" key={key}>
+            <h5>
+              {item.postedBy.name}
+              {item.postedBy._id === state._id && (
+                <i
+                  className="material-icons"
+                  style={{ float: "right", marginTop: "5px" }}
+                  onClick={() => deletePost(item._id)}
+                >
+                  delete
+                </i>
+              )}
+            </h5>
             <div className="card-image">
               <img alt="#" src={item.photo} />
             </div>
@@ -143,18 +169,15 @@ const Home = () => {
               {/* <i className="material-icons" style={{marginLeft:"8px"}} >chat_bubble_outline</i> */}
               <h6>{item.title}</h6>
               <p>{item.body}</p>
-              {
-                //data.item &&
-                item.comments.map((record, key) => {
-                  console.log("num", record);
-                  return (
-                    <h6 key={key}>
-                      <span style={{ fontWeight: "500" }}>Aaditya</span>
-                      yash chutiya hai
-                    </h6>
-                  );
-                })
-              }
+
+              {/* {item.comments.map((record) => {
+                console.log("num", record);
+                return (
+                  <h6>
+                    <span style={{ fontWeight: "500" }}>{"name"}</span> {"text"}
+                  </h6>
+                );
+              })} */}
 
               <form
                 onSubmit={(e) => {

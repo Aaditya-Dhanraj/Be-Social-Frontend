@@ -3,7 +3,7 @@ import "./Navbar.css";
 import { UserContext } from "../../App";
 import M from "materialize-css";
 import { Link, useHistory } from "react-router-dom";
-import SlideBar from "./SlideBar";
+// import SlideBar from "./SlideBar";
 
 const Navbar = () => {
   const { state, dispatch } = useContext(UserContext);
@@ -12,20 +12,16 @@ const Navbar = () => {
   const sendLogout = () => {
     fetch("/api/v1/users/logout", {
       method: "get",
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        // console.log(result);
-        if (result.status === "success") {
-          M.toast({
-            html: "Logged-Out successfully}",
-            classes: "#43a047 green darken-1",
-          });
-          localStorage.clear();
-          dispatch({ type: "CLEAR" });
-          history.push("/login")
-        }
+    }).then((result) => {
+      // console.log(result);
+      M.toast({
+        html: "Logged-Out successfully",
+        classes: "#43a047 green darken-1",
       });
+      localStorage.clear();
+      dispatch({ type: "CLEAR" });
+      history.push("/login");
+    });
   };
 
   const renderList = () => {
@@ -78,7 +74,7 @@ const Navbar = () => {
         <ul id="nav-mobile" className="right ullu">
           {renderList()}
         </ul>
-        <nav className="mobile right">
+        {/* <nav className="mobile right">
           <Link
             to="#"
             data-target="slide-out"
@@ -87,7 +83,7 @@ const Navbar = () => {
             <i className="material-icons">menu</i>
           </Link>
         </nav>
-        <SlideBar />
+        <SlideBar /> */}
       </div>
     </nav>
   );

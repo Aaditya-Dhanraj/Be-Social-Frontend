@@ -6,6 +6,7 @@ import Signup from "./Components/Pages/Signup";
 import Profile from "./Components/Pages/Profile";
 import Home from "./Components/Pages/Home";
 import CreatePost from "./Components/Pages/CreatePost";
+import OthersProfile from "./Components/Pages/OthersProfile";
 import { reducer, initialState } from "./Reducers/userReducer";
 
 export const UserContext = createContext();
@@ -37,6 +38,9 @@ const Routing = () => {
       </Route>
       <Route exact path="/create">
         <CreatePost />
+      </Route>
+      <Route exact path="/profile/:userid">
+        <OthersProfile />
       </Route>
     </Switch>
   );
