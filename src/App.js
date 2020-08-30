@@ -7,6 +7,7 @@ import Profile from "./Components/Pages/Profile";
 import Home from "./Components/Pages/Home";
 import CreatePost from "./Components/Pages/CreatePost";
 import OthersProfile from "./Components/Pages/OthersProfile";
+import Room from "./Components/videoChat/frontendVideo";
 import { reducer, initialState } from "./Reducers/userReducer";
 
 export const UserContext = createContext();
@@ -41,6 +42,9 @@ const Routing = () => {
       </Route>
       <Route exact path="/profile/:userid">
         <OthersProfile />
+      </Route>
+      <Route exact path="/videoChat">
+        <Room />
       </Route>
     </Switch>
   );
